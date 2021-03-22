@@ -1,0 +1,21 @@
+const jokeEl = document.querySelector('#joke');
+const jokeBtn = document.querySelector('#jokeBtn');
+
+generateJoke();
+
+function generateJoke() {
+  fetch('https://icanhazdadjoke.com', {
+    headers: {
+      Accept: 'application/json',
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      jokeEl.textContent = data.joke;
+    });
+}
+jokeBtn.addEventListener('click', generateJoke);
+
+//저 headers를 변수로 주면 const config = headers:{ Accept: 'application/json}
+//그러면 fectch를 조금 간결하게 쓸 수 있겠지
+// fetch('http://icanhazazdadjoke.com',config) 요렇게.
